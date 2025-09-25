@@ -19,7 +19,7 @@ const points = [
 		title: "Hustle Gear",
 		content: "Premium custom athletic wear and team uniforms for champions<br><span style='color: #f59e0b; font-weight: 600'>285% increase in online orders, 12 new regional markets</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/ Hustle_logo png.png" alt="Hustle Gear" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
-		website: "https://hustle-gear.com",
+		website: "https://www.hustle-gear.com",
 	},
 	{
 		title: "Budd's Plumbing & HVAC",
@@ -62,7 +62,7 @@ const points = [
 
 <section id="services" class:list={["section home-dark-section services-section relative", className]}>
 	<div class="wrapper col-span-12 h-screen w-full">
-		<h2 class="sr-only">{t("services")}</h2>
+		<h2 class="font-display text-4xl uppercase mb-12 text-center md:text-5xl lg:text-6xl">Our Portfolio</h2>
 		<div class="indicators absolute left-0 top-0 mt-[10vh] hidden h-[80vh] w-1 flex-col justify-between gap-2">
 			{points.map(() => <div class="indicator w-full grow bg-[#333333]" />)}
 		</div>
@@ -89,9 +89,8 @@ const points = [
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 
-	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
+	gsap.registerPlugin(ScrollTrigger);
 
 	function init() {
 		var points = gsap.utils.toArray(".point") as gsap.DOMTarget[];
@@ -136,17 +135,34 @@ const points = [
 		});
 
 		points.forEach(function (elem, i) {
-			gsap.set(elem, { position: "absolute", top: 0 });
+			gsap.set(elem, { position: "absolute", top: 0, zIndex: i === 0 ? 10 : 1 });
 
-			// https://codepen.io/zank/pen/oNVjYMM?editors=0010
+			// Animate indicators
 			tl.to(indicators[i], { backgroundColor: "white", duration: 0.25 }, i);
-			tl.from((elem as HTMLElement).querySelector("svg"), { autoAlpha: 0 }, i);
+
+			// Show current element
+			tl.set(elem, { zIndex: 10, pointerEvents: "auto" }, i);
+
+			// Animate logo (target the div inside the link, not the link itself)
+			const logoElement = (elem as HTMLElement).querySelector("a div") || (elem as HTMLElement).querySelector(".hidden div");
+			if (logoElement) {
+				tl.from(logoElement, { autoAlpha: 0, scale: 0.8 }, i);
+			}
+
+			// Animate article content
 			tl.from((elem as HTMLElement).querySelector("article"), { autoAlpha: 0, translateY: 100 }, i);
 
 			if (i != points.length - 1) {
 				tl.to(indicators[i], { backgroundColor: "#333333", duration: 0.25 }, i + 0.75);
 				tl.to((elem as HTMLElement).querySelector("article"), { autoAlpha: 0, translateY: -100 }, i + 0.75);
-				tl.to((elem as HTMLElement).querySelector("svg"), { autoAlpha: 0 }, i + 0.75);
+
+				// Animate logo out (target the div inside the link)
+				if (logoElement) {
+					tl.to(logoElement, { autoAlpha: 0, scale: 0.8 }, i + 0.75);
+				}
+
+				// Hide current element
+				tl.set(elem, { zIndex: 1, pointerEvents: "none" }, i + 1);
 			}
 		});
 	}

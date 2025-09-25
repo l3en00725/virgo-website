@@ -5,6 +5,7 @@ import BaseHead from "@components/BaseHead.astro";
 import BackgroundTexture from "@components/global/BackgroundTexture.astro";
 import Footer from "@components/global/Footer.astro";
 import Navigation from "@components/global/Navigation.astro";
+import SEOSchema from "@components/global/SEOSchema.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const { pathname } = Astro.url;
@@ -17,45 +18,45 @@ const { seo: seoProp } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-const shareImage = new URL("/images/meta/mintaka_share.gif", Astro.site).toString();
+const shareImage = new URL("/images/portfolio/VirgoCover.jpg", Astro.site).toString();
 
 const defaultSeo: AstroSeoProps = {
-	title: "Web Agency Leading in Performant Web Design Solutions - Mintaka Studio",
+	title: "Virgo - Partners in Growth and Value Creation",
 	description:
-		"Mintaka Studio excels in creating fast, user-friendly websites with a focus on aesthetic design and SEO optimization, ensuring a standout online presence",
-	canonical: "https://mintaka.co",
+		"Virgo partners with exceptional companies to accelerate growth, create value, and build market leaders. We focus on sustainable growth and operational excellence.",
+	canonical: "https://virgo-partners.com",
 	openGraph: {
-		url: "https://mintaka.co",
-		title: "Web Agency Leading in Performant Web Design Solutions - Mintaka Studio",
+		url: "https://virgo-partners.com",
+		title: "Virgo - Partners in Growth and Value Creation",
 		description:
-			"Mintaka Studio excels in creating fast, user-friendly websites with a focus on aesthetic design and SEO optimization, ensuring a standout online presence",
+			"Virgo partners with exceptional companies to accelerate growth, create value, and build market leaders. We focus on sustainable growth and operational excellence.",
 		images: [
 			{
 				url: shareImage,
 				width: 1200,
 				height: 630,
-				alt: "Social open graph",
-				type: "image/gif",
+				alt: "Virgo - Partners in Growth",
+				type: "image/jpg",
 			},
 			{
 				url: shareImage,
 				width: 4096,
 				height: 4096,
-				alt: "Twitter open graph",
-				type: "image/gif",
+				alt: "Virgo - Social Share",
+				type: "image/jpg",
 			},
 		],
-		site_name: "Mintaka",
+		site_name: "Virgo",
 	},
 	twitter: {
-		handle: "@mintakastudio",
-		site: "@mintakastudio",
+		handle: "@VirgoPartners",
+		site: "@VirgoPartners",
 		cardType: "summary_large_image",
 	},
 	additionalMetaTags: [
 		{
 			name: "publisher",
-			content: "Mintaka Studio",
+			content: "Virgo",
 		},
 	],
 };
@@ -75,6 +76,7 @@ function cursorFollowerActive() {
 	<head>
 		<BaseHead />
 		<AstroSeo {...seo} />
+		<SEOSchema />
 	</head>
 	<body class="bg-slate-50">
 		<BackgroundTexture />

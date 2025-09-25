@@ -1,0 +1,259 @@
+---
+export interface Props {
+	type?: 'organization' | 'website' | 'article';
+	title?: string;
+	description?: string;
+	url?: string;
+	image?: string;
+	datePublished?: string;
+	dateModified?: string;
+}
+
+const {
+	type = 'organization',
+	title = 'Virgo - Partners in Growth and Value Creation',
+	description = 'Virgo partners with exceptional companies to accelerate growth, create value, and build market leaders. We focus on sustainable growth and operational excellence.',
+	url = Astro.url.toString(),
+	image = new URL('/images/portfolio/VirgoCover.jpg', Astro.site).toString(),
+	datePublished,
+	dateModified
+} = Astro.props;
+
+const baseUrl = 'https://virgo-partners.com';
+
+// Organization Schema
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"@id": `${baseUrl}#organization`,
+	"name": "Virgo",
+	"alternateName": "Virgo Partners",
+	"description": "Investment firm focused on operational excellence, partnering with exceptional companies to accelerate growth and create value.",
+	"url": baseUrl,
+	"logo": {
+		"@type": "ImageObject",
+		"url": `${baseUrl}/logo.svg`,
+		"width": "200",
+		"height": "50"
+	},
+	"image": {
+		"@type": "ImageObject",
+		"url": image,
+		"width": "1200",
+		"height": "630"
+	},
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"contactType": "Business",
+		"email": "test@virgo.com",
+		"availableLanguage": ["English"]
+	},
+	"address": {
+		"@type": "PostalAddress",
+		"addressRegion": "North America",
+		"addressCountry": "US"
+	},
+	"foundingDate": "2020",
+	"numberOfEmployees": {
+		"@type": "QuantitativeValue",
+		"value": "10-50"
+	},
+	"sameAs": [
+		"https://www.linkedin.com/company/virgo-partners"
+	],
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Investment Services",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Growth Capital Investment",
+					"description": "Investment capital ranging from $500K to $3M for companies with $1M-$7M in revenue"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Operational Excellence Consulting",
+					"description": "Strategic guidance and operational improvements to accelerate business growth"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Value Creation Services",
+					"description": "Comprehensive support to build market leaders and create sustainable value"
+				}
+			}
+		]
+	}
+};
+
+// Investment Company Schema
+const investmentCompanySchema = {
+	"@context": "https://schema.org",
+	"@type": "FinancialService",
+	"@id": `${baseUrl}#financialservice`,
+	"name": "Virgo Investment Services",
+	"provider": {
+		"@id": `${baseUrl}#organization`
+	},
+	"serviceType": "Investment Management",
+	"description": "Growth capital investment and value creation services for mid-market companies",
+	"areaServed": ["North America", "Europe"],
+	"audience": {
+		"@type": "Audience",
+		"audienceType": "Business",
+		"geographicArea": ["United States", "Canada", "European Union"]
+	},
+	"serviceOutput": {
+		"@type": "Service",
+		"name": "Business Growth and Value Creation"
+	}
+};
+
+// Website Schema
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"@id": `${baseUrl}#website`,
+	"url": baseUrl,
+	"name": "Virgo Partners",
+	"description": description,
+	"publisher": {
+		"@id": `${baseUrl}#organization`
+	},
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": {
+			"@type": "EntryPoint",
+			"urlTemplate": `${baseUrl}/search?q={search_term_string}`
+		},
+		"query-input": "required name=search_term_string"
+	},
+	"inLanguage": "en-US"
+};
+
+// Portfolio Companies Schema
+const portfolioSchema = {
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	"name": "Virgo Portfolio Companies",
+	"description": "Companies in the Virgo investment portfolio",
+	"numberOfItems": 7,
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"item": {
+				"@type": "Organization",
+				"name": "Hustle Gear",
+				"description": "Athletic and fitness equipment company"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"item": {
+				"@type": "Organization",
+				"name": "Budd's Plumbing",
+				"description": "Professional plumbing services"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"item": {
+				"@type": "Organization",
+				"name": "Blue Lawns",
+				"description": "Landscaping and lawn care services"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 4,
+			"item": {
+				"@type": "Organization",
+				"name": "Cabinet Company",
+				"description": "Custom cabinet manufacturing and installation"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 5,
+			"item": {
+				"@type": "Organization",
+				"name": "S2S Media",
+				"description": "Digital marketing and media services"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 6,
+			"item": {
+				"@type": "Organization",
+				"name": "Shore Handyman",
+				"description": "Professional handyman and repair services"
+			}
+		},
+		{
+			"@type": "ListItem",
+			"position": 7,
+			"item": {
+				"@type": "Organization",
+				"name": "Best Life Counseling",
+				"description": "Mental health and counseling services"
+			}
+		}
+	]
+};
+
+// Breadcrumb Schema for navigation
+const breadcrumbSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": baseUrl
+		}
+	]
+};
+
+let schemas = [organizationSchema, investmentCompanySchema, websiteSchema, portfolioSchema, breadcrumbSchema];
+
+// Add article schema if it's an article/blog page
+if (type === 'article' && datePublished) {
+	const articleSchema = {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": title,
+		"description": description,
+		"image": image,
+		"author": {
+			"@id": `${baseUrl}#organization`
+		},
+		"publisher": {
+			"@id": `${baseUrl}#organization`
+		},
+		"datePublished": datePublished,
+		"dateModified": dateModified || datePublished,
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": url
+		}
+	};
+	schemas.push(articleSchema);
+}
+---
+
+<!-- Schema.org JSON-LD structured data -->
+{schemas.map(schema => (
+	<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
