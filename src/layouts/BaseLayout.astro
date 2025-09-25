@@ -18,15 +18,15 @@ const { seo: seoProp } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-const shareImage = Astro.site ? new URL("/og-image.jpg", Astro.site).toString() : "/og-image.jpg";
+const shareImage = "https://www.virgobiz.com/og-image.jpg";
 
 const defaultSeo: AstroSeoProps = {
 	title: "Virgo - Partners in Growth and Value Creation",
 	description:
 		"Virgo partners with exceptional companies to accelerate growth, create value, and build market leaders. We focus on sustainable growth and operational excellence.",
-	canonical: "https://virgo-partners.com",
+	canonical: "https://www.virgobiz.com",
 	openGraph: {
-		url: "https://virgo-partners.com",
+		url: "https://www.virgobiz.com",
 		title: "Virgo - Partners in Growth and Value Creation",
 		description:
 			"Virgo partners with exceptional companies to accelerate growth, create value, and build market leaders. We focus on sustainable growth and operational excellence.",
