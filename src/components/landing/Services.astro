@@ -13,32 +13,42 @@ const translatePath = useTranslatedPath(lang);
 
 const { class: className } = Astro.props;
 
-// Portfolio companies - replace with your actual company data
+// Virgo's portfolio companies with SEO-optimized copy
 const points = [
 	{
-		title: "TechFlow Solutions",
-		content: "Custom software development for growing businesses<br><span style='color: #f59e0b; font-weight: 600'>$2.5M Revenue</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/techflow-logo.png" alt="TechFlow Solutions" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
+		title: "Hustle Gear",
+		content: "Premium custom athletic wear and team uniforms for champions<br><span style='color: #f59e0b; font-weight: 600'>285% increase in online orders, 12 new regional markets</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/Hustle_logo.png" alt="Hustle Gear" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 	},
 	{
-		title: "Summit Manufacturing",
-		content: "Precision manufacturing for aerospace and automotive<br><span style='color: #f59e0b; font-weight: 600'>$4.2M Revenue</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/summit-logo.png" alt="Summit Manufacturing" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
+		title: "Budd's Plumbing & HVAC",
+		content: "Trusted residential and commercial plumbing experts serving your community<br><span style='color: #f59e0b; font-weight: 600'>340% more qualified leads through local SEO optimization</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BuddsLogo.png" alt="Budd's Plumbing & HVAC" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 	},
 	{
-		title: "GreenLeaf Consulting",
-		content: "Environmental compliance and sustainability consulting<br><span style='color: #f59e0b; font-weight: 600'>$1.8M Revenue</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/greenleaf-logo.png" alt="GreenLeaf Consulting" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
+		title: "Blue Lawns",
+		content: "Professional landscaping and lawn care services that transform outdoor spaces<br><span style='color: #f59e0b; font-weight: 600'>225% growth in seasonal contracts through strategic marketing</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BlueLawnsLogo.png" alt="Blue Lawns" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 	},
 	{
-		title: "Retail Partners Group",
-		content: "Multi-location retail operations and franchising<br><span style='color: #f59e0b; font-weight: 600'>$6.1M Revenue</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/retail-logo.png" alt="Retail Partners Group" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
+		title: "The Cabinet Company",
+		content: "Custom kitchen and bathroom cabinetry crafted for modern living<br><span style='color: #f59e0b; font-weight: 600'>190% increase in consultations, 45% higher project values</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/TheCabinetCompany.png" alt="The Cabinet Company" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 	},
 	{
-		title: "HealthTech Innovations",
-		content: "Medical device distribution and support services<br><span style='color: #f59e0b; font-weight: 600'>$3.7M Revenue</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/healthtech-logo.png" alt="HealthTech Innovations" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
+		title: "S2S Media",
+		content: "Your marketing company powered by AI - driving results through intelligent automation<br><span style='color: #f59e0b; font-weight: 600'>400% ROI improvement through AI-driven strategies</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/S2Slogo.png" alt="S2S Media" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+	},
+	{
+		title: "Shore Handyman",
+		content: "Professional home services for the small jobs no one else wants<br><span style='color: #f59e0b; font-weight: 600'>265% increase in recurring customers through digital experience</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/Shorehandymanlogo.png" alt="Shore Handyman" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+	},
+	{
+		title: "Best Life Counseling Services",
+		content: "Comprehensive mental health support through in-home, outpatient, and telehealth counseling<br><span style='color: #f59e0b; font-weight: 600'>180% increase in client bookings through digital transformation</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BestLifeLogo.png" alt="Best Life Counseling Services" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 	},
 ];
 ---
