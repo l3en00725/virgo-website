@@ -18,37 +18,44 @@ const points = [
 	{
 		title: "Hustle Gear",
 		content: "Premium custom athletic wear and team uniforms for champions<br><span style='color: #f59e0b; font-weight: 600'>285% increase in online orders, 12 new regional markets</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/Hustle_logo.png" alt="Hustle Gear" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/ Hustle_logo png.png" alt="Hustle Gear" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://hustle-gear.com",
 	},
 	{
 		title: "Budd's Plumbing & HVAC",
 		content: "Trusted residential and commercial plumbing experts serving your community<br><span style='color: #f59e0b; font-weight: 600'>340% more qualified leads through local SEO optimization</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BuddsLogo.png" alt="Budd's Plumbing & HVAC" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://buddsplumbing.com",
 	},
 	{
 		title: "Blue Lawns",
 		content: "Professional landscaping and lawn care services that transform outdoor spaces<br><span style='color: #f59e0b; font-weight: 600'>225% growth in seasonal contracts through strategic marketing</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BlueLawnsLogo.png" alt="Blue Lawns" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.bluelawns.com",
 	},
 	{
 		title: "The Cabinet Company",
 		content: "Custom kitchen and bathroom cabinetry crafted for modern living<br><span style='color: #f59e0b; font-weight: 600'>190% increase in consultations, 45% higher project values</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/TheCabinetCompany.png" alt="The Cabinet Company" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.thecabinetco.co",
 	},
 	{
 		title: "S2S Media",
 		content: "Your marketing company powered by AI - driving results through intelligent automation<br><span style='color: #f59e0b; font-weight: 600'>400% ROI improvement through AI-driven strategies</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/S2Slogo.png" alt="S2S Media" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.s2smedia.net",
 	},
 	{
 		title: "Shore Handyman",
 		content: "Professional home services for the small jobs no one else wants<br><span style='color: #f59e0b; font-weight: 600'>265% increase in recurring customers through digital experience</span>",
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/Shorehandymanlogo.png" alt="Shore Handyman" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.yourshorehandyman.com",
 	},
 	{
 		title: "Best Life Counseling Services",
 		content: "Comprehensive mental health support through in-home, outpatient, and telehealth counseling<br><span style='color: #f59e0b; font-weight: 600'>180% increase in client bookings through digital transformation</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BestLifeLogo.png" alt="Best Life Counseling Services" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BestLife-01.png" alt="Best Life Counseling Services" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.bestlifenj.com",
 	},
 ];
 ---
@@ -60,14 +67,18 @@ const points = [
 			{points.map(() => <div class="indicator w-full grow bg-[#333333]" />)}
 		</div>
 		{
-			points.map(({ title, content, image }) => (
+			points.map(({ title, content, image, website }) => (
 				<div class="point flex h-screen w-full flex-col items-center justify-center gap-x-20 gap-y-12 p-16 pr-0 md:flex-row lg:gap-x-40">
-					<div class="hidden w-full max-w-80 lg:block">
+					<a href={website} target="_blank" rel="noopener noreferrer" class="hidden w-full max-w-80 lg:block hover:scale-105 transition-transform duration-300">
 						<Fragment set:html={image} class="" />
-					</div>
+					</a>
 					<article class="flex flex-col gap-14">
-						<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl">{title}</h3>
-						<p class="max-w-2xl text-lg" set:html={content} />
+						<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors duration-300">
+							<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl">{title}</h3>
+						</a>
+						<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors duration-300">
+							<p class="max-w-2xl text-lg" set:html={content} />
+						</a>
 					</article>
 				</div>
 			))
