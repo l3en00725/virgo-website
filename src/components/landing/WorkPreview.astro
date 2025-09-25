@@ -38,10 +38,12 @@ const allProjects = (await getCollection("projects"))
 				src={virgoSpaceImage}
 				alt="Virgo Space - Where entrepreneurs grow"
 				class="mx-auto rounded-2xl shadow-2xl max-w-2xl w-full h-96 object-cover"
-				width={800}
-				height={400}
+				width={384}
+				height={384}
+				widths={[384, 768]}
+				sizes="(max-width: 768px) 384px, 768px"
 				format="webp"
-				quality={60}
+				quality={50}
 				loading="lazy"
 			/>
 		</div>

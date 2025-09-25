@@ -57,6 +57,12 @@ const points = [
 		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BestLife-01.png" alt="Best Life Counseling Services" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
 		website: "https://www.bestlifenj.com",
 	},
+	{
+		title: "Ecoast Pool Service",
+		content: "Professional pool cleaning, maintenance, and repair services for residential and commercial properties<br><span style='color: #f59e0b; font-weight: 600'>310% increase in recurring service contracts through local SEO</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/ecoastpoolservicelogo.png" alt="Ecoast Pool Service" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		website: "https://www.ecoastpoolservice.com",
+	},
 ];
 ---
 
@@ -97,6 +103,9 @@ const points = [
 		var indicators = gsap.utils.toArray(".indicator") as gsap.DOMTarget[];
 
 		var height = 100 * points.length;
+
+		// Refresh ScrollTrigger for mobile
+		ScrollTrigger.refresh();
 
 		gsap.set(".indicators", { display: "flex" });
 
@@ -164,6 +173,17 @@ const points = [
 				// Hide current element
 				tl.set(elem, { zIndex: 1, pointerEvents: "none" }, i + 1);
 			}
+		});
+
+		// Handle mobile orientation changes and resize
+		window.addEventListener("resize", () => {
+			ScrollTrigger.refresh();
+		});
+
+		window.addEventListener("orientationchange", () => {
+			setTimeout(() => {
+				ScrollTrigger.refresh();
+			}, 500);
 		});
 	}
 
