@@ -18,7 +18,7 @@ const { seo: seoProp } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-const shareImage = new URL("/images/portfolio/VirgoCover.jpg", Astro.site).toString();
+const shareImage = Astro.site ? new URL("/og-image.jpg", Astro.site).toString() : "/og-image.jpg";
 
 const defaultSeo: AstroSeoProps = {
 	title: "Virgo - Partners in Growth and Value Creation",
