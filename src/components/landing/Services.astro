@@ -13,31 +13,32 @@ const translatePath = useTranslatedPath(lang);
 
 const { class: className } = Astro.props;
 
+// Portfolio companies - replace with your actual company data
 const points = [
 	{
-		title: t("websites.title"),
-		content: t("websites.content"),
-		image: websiteSvg,
+		title: "TechFlow Solutions",
+		content: "Custom software development for growing businesses<br><span style='color: #f59e0b; font-weight: 600'>$2.5M Revenue</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/techflow-logo.png" alt="TechFlow Solutions" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
 	},
 	{
-		title: t("apps.title"),
-		content: t("apps.content"),
-		image: mobileSvg,
+		title: "Summit Manufacturing",
+		content: "Precision manufacturing for aerospace and automotive<br><span style='color: #f59e0b; font-weight: 600'>$4.2M Revenue</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/summit-logo.png" alt="Summit Manufacturing" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
 	},
 	{
-		title: t("uiux.title"),
-		content: t("uiux.content"),
-		image: designSvg,
+		title: "GreenLeaf Consulting",
+		content: "Environmental compliance and sustainability consulting<br><span style='color: #f59e0b; font-weight: 600'>$1.8M Revenue</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/greenleaf-logo.png" alt="GreenLeaf Consulting" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
 	},
 	{
-		title: t("seo.title"),
-		content: t("seo.content"),
-		image: seoSvg,
+		title: "Retail Partners Group",
+		content: "Multi-location retail operations and franchising<br><span style='color: #f59e0b; font-weight: 600'>$6.1M Revenue</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/retail-logo.png" alt="Retail Partners Group" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
 	},
 	{
-		title: t("advertising.title"),
-		content: t("advertising.content"),
-		image: advertisingSvg,
+		title: "HealthTech Innovations",
+		content: "Medical device distribution and support services<br><span style='color: #f59e0b; font-weight: 600'>$3.7M Revenue</span>",
+		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/healthtech-logo.png" alt="HealthTech Innovations" style="max-width: 120px; max-height: 80px; object-fit: contain;" onerror="this.src='/images/placeholder-logo.svg'" /></div>`,
 	},
 ];
 ---
