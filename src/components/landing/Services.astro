@@ -7,6 +7,16 @@ import seoSvg from "@assets/images/services/seo-link-building.svg?raw";
 import websiteSvg from "@assets/images/services/website-ui-ux-development.svg?raw";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
 
+// Import portfolio logos
+import hustleGearLogo from "@assets/images/portfolio/ Hustle_logo png.png";
+import buddsLogo from "@assets/images/portfolio/BuddsLogo.png";
+import blueLawnsLogo from "@assets/images/portfolio/BlueLawnsLogo.png";
+import cabinetCompanyLogo from "@assets/images/portfolio/TheCabinetCompany.png";
+import s2sLogo from "@assets/images/portfolio/S2Slogo.png";
+import shoreHandymanLogo from "@assets/images/portfolio/Shorehandymanlogo.png";
+import bestLifeLogo from "@assets/images/portfolio/BestLife-01.png";
+import ecoastPoolLogo from "@assets/images/portfolio/ecoastpoolservicelogo.png";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -18,49 +28,49 @@ const points = [
 	{
 		title: "Hustle Gear",
 		content: "Premium custom athletic wear and team uniforms for champions<br><span style='color: #f59e0b; font-weight: 600'>285% increase in online orders, 12 new regional markets</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/ Hustle_logo png.png" alt="Hustle Gear" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: hustleGearLogo,
 		website: "https://www.hustle-gear.com",
 	},
 	{
 		title: "Budd's Plumbing & HVAC",
 		content: "Trusted residential and commercial plumbing experts serving your community<br><span style='color: #f59e0b; font-weight: 600'>340% more qualified leads through local SEO optimization</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BuddsLogo.png" alt="Budd's Plumbing & HVAC" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: buddsLogo,
 		website: "https://buddsplumbing.com",
 	},
 	{
 		title: "Blue Lawns",
 		content: "Professional landscaping and lawn care services that transform outdoor spaces<br><span style='color: #f59e0b; font-weight: 600'>225% growth in seasonal contracts through strategic marketing</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BlueLawnsLogo.png" alt="Blue Lawns" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: blueLawnsLogo,
 		website: "https://www.bluelawns.com",
 	},
 	{
 		title: "The Cabinet Company",
 		content: "Custom kitchen and bathroom cabinetry crafted for modern living<br><span style='color: #f59e0b; font-weight: 600'>190% increase in consultations, 45% higher project values</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/TheCabinetCompany.png" alt="The Cabinet Company" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: cabinetCompanyLogo,
 		website: "https://www.thecabinetco.co",
 	},
 	{
 		title: "S2S Media",
 		content: "Your marketing company powered by AI - driving results through intelligent automation<br><span style='color: #f59e0b; font-weight: 600'>400% ROI improvement through AI-driven strategies</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/S2Slogo.png" alt="S2S Media" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: s2sLogo,
 		website: "https://www.s2smedia.net",
 	},
 	{
 		title: "Shore Handyman",
 		content: "Professional home services for the small jobs no one else wants<br><span style='color: #f59e0b; font-weight: 600'>265% increase in recurring customers through digital experience</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/Shorehandymanlogo.png" alt="Shore Handyman" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: shoreHandymanLogo,
 		website: "https://www.yourshorehandyman.com",
 	},
 	{
 		title: "Best Life Counseling Services",
 		content: "Comprehensive mental health support through in-home, outpatient, and telehealth counseling<br><span style='color: #f59e0b; font-weight: 600'>180% increase in client bookings through digital transformation</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/BestLife-01.png" alt="Best Life Counseling Services" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: bestLifeLogo,
 		website: "https://www.bestlifenj.com",
 	},
 	{
 		title: "Ecoast Pool Service",
 		content: "Professional pool cleaning, maintenance, and repair services for residential and commercial properties<br><span style='color: #f59e0b; font-weight: 600'>310% increase in recurring service contracts through local SEO</span>",
-		image: `<div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"><img src="/images/portfolio/ecoastpoolservicelogo.png" alt="Ecoast Pool Service" style="max-width: 120px; max-height: 80px; object-fit: contain;" /></div>`,
+		logo: ecoastPoolLogo,
 		website: "https://www.ecoastpoolservice.com",
 	},
 ];
@@ -73,17 +83,49 @@ const points = [
 			{points.map(() => <div class="indicator w-full grow bg-[#333333]" />)}
 		</div>
 		{
-			points.map(({ title, content, image, website }) => (
-				<div class="point flex h-screen w-full flex-col items-center justify-center gap-x-20 gap-y-12 p-16 pr-0 md:flex-row lg:gap-x-40">
+			points.map(({ title, content, logo, website }) => (
+				<div class="point flex h-screen w-full flex-col items-center justify-center gap-x-20 gap-y-8 p-8 md:p-16 pr-0 md:flex-row lg:gap-x-40">
+					<!-- Desktop Logo (hidden on mobile) -->
 					<a href={website} target="_blank" rel="noopener noreferrer" class="hidden w-full max-w-80 lg:block hover:scale-105 transition-transform duration-300">
-						<Fragment set:html={image} class="" />
+						<div class="w-48 h-48 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
+							<Image
+								src={logo}
+								alt={title}
+								width={120}
+								height={80}
+								format="webp"
+								quality={75}
+								loading="lazy"
+								class="max-w-[120px] max-h-20 object-contain"
+							/>
+						</div>
 					</a>
-					<article class="flex flex-col gap-14">
-						<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors duration-300">
-							<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl">{title}</h3>
+
+					<article class="flex flex-col gap-8 md:gap-14 items-center md:items-start">
+						<!-- Mobile Logo (centered above title) -->
+						<a href={website} target="_blank" rel="noopener noreferrer" class="block lg:hidden hover:scale-105 transition-transform duration-300">
+							<div class="w-32 h-32 bg-white rounded-xl flex items-center justify-center shadow-xl">
+								<Image
+									src={logo}
+									alt={title}
+									width={80}
+									height={60}
+									format="webp"
+									quality={75}
+									loading="lazy"
+									class="max-w-[80px] max-h-[60px] object-contain"
+								/>
+							</div>
 						</a>
-						<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors duration-300">
-							<p class="max-w-2xl text-lg" set:html={content} />
+
+						<div class="text-center md:text-left">
+							<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors duration-300">
+								<h3 class="faq font-display text-3xl uppercase md:text-4xl lg:text-5xl xl:text-6xl">{title}</h3>
+							</a>
+						</div>
+
+						<a href={website} target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors duration-300 text-center md:text-left">
+							<p class="max-w-2xl text-base md:text-lg" set:html={content} />
 						</a>
 					</article>
 				</div>

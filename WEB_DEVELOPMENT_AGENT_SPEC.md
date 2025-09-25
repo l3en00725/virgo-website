@@ -1,11 +1,12 @@
 # Web Development Agent Specification
 
 ## Overview
-A comprehensive Web Development Agent designed to handle complete website builds from start to finish, with mandatory social sharing validation as the critical final step. This agent follows a systematic 7-step process ensuring no critical elements are overlooked.
+A comprehensive Web Development Agent designed to handle complete website builds from start to finish, with local performance testing and mandatory social sharing validation as critical quality gates. This agent follows a systematic 7-step process (with Step 6.5 for local performance testing) ensuring no critical elements are overlooked.
 
 ## Core Philosophy
 - **Systematic Approach**: Follow each step in sequence
 - **Quality First**: Performance, SEO, and user experience are paramount
+- **Local Performance Testing**: Step 6.5 prevents poor-performing deployments
 - **Social Sharing Critical**: Step 7 is mandatory and non-negotiable
 - **Modern Tech Stack**: Emphasis on Astro for optimal performance
 
@@ -512,7 +513,7 @@ This step now includes the **Performance & Testing Validation Sub-Agent** that h
 
 ### Step 6: Testing & Deployment
 
-**Objective**: Ensure quality and deploy to production
+**Objective**: Ensure quality and prepare for deployment validation
 
 #### Tasks:
 1. **Cross-Browser Testing**
@@ -589,10 +590,212 @@ This step now includes the **Performance & Testing Validation Sub-Agent** that h
 
 #### Deliverables:
 - Cross-browser compatibility report
-- Performance audit results
+- Initial performance audit results
 - Production deployment with custom domain
 - Monitoring and analytics setup
 - Deployment documentation
+
+---
+
+### Step 6.5: Local Performance Testing (Before Deployment)
+
+**Objective**: Test performance locally before deploying to avoid wasting time with poor-performing deployments
+
+#### Performance Testing Protocol
+
+**Purpose**: Test performance locally before deployment to catch issues early and allow for rapid optimization cycles without waiting for live deployments.
+
+#### Tasks:
+
+1. **Build for Production**
+   ```bash
+   # Build the project for production testing
+   npm run build
+   # or
+   yarn build
+   # or
+   pnpm build
+   ```
+
+2. **Serve Locally**
+   ```bash
+   # Serve the built production files locally
+   npx serve dist -l 3001
+   # or use astro preview
+   npm run preview
+   ```
+
+3. **Browser DevTools Testing**
+   - **Open Chrome DevTools**: Navigate to Lighthouse tab
+   - **Configure Test**:
+     - Set form factor to "Mobile"
+     - Enable "Slow 4G" throttling
+     - Run performance audit
+   - **Target Minimum Scores**:
+     - **Mobile Performance**: 75+ (improvement from baseline)
+     - **Desktop Performance**: 85+
+   - **Core Web Vitals Focus**:
+     - **LCP (Largest Contentful Paint)**: Under 2.5s
+     - **FID (First Input Delay)**: Under 100ms
+     - **CLS (Cumulative Layout Shift)**: Under 0.1
+
+4. **Alternative CLI Testing**
+   ```bash
+   # Test with Lighthouse CLI for mobile
+   npx lighthouse http://localhost:3001 --form-factor=mobile --output=json --output=html
+
+   # Test desktop version
+   npx lighthouse http://localhost:3001 --form-factor=desktop --output=json --output=html
+
+   # Test with throttling
+   npx lighthouse http://localhost:3001 --throttling-method=devtools --throttling.cpuSlowdownMultiplier=4
+   ```
+
+5. **File Size Verification**
+   ```bash
+   # Check optimized asset sizes in dist/
+   ls -la dist/assets/
+
+   # Analyze bundle sizes
+   npx vite-bundle-analyzer dist/
+   ```
+
+   **Size Requirements**:
+   - **Images**: WebP format under 50KB each
+   - **Main images**: Under 25KB for mobile optimization
+   - **JavaScript bundles**: Under 100KB gzipped
+   - **Total image payload**: Under 500KB
+
+#### Success Criteria
+
+**Performance Benchmarks**:
+- ✅ **Mobile Performance Score**: 75+ (improvement from baseline)
+- ✅ **Desktop Performance Score**: 85+
+- ✅ **LCP (Largest Contentful Paint)**: Under 2.5s
+- ✅ **Total image payload**: Under 500KB
+- ✅ **No render-blocking CSS**: Over 300ms
+
+#### Performance Optimization Checklist
+
+**Critical Optimizations to Verify**:
+
+1. **Image Optimization**
+   - ✅ **Convert large images to Astro Image components with WebP**
+     ```astro
+     ---
+     import { Image } from 'astro:assets';
+     import heroImage from '../assets/hero.jpg';
+     ---
+
+     <Image
+       src={heroImage}
+       alt="Hero description"
+       width={1200}
+       height={600}
+       format="webp"
+       quality={75}
+       loading="lazy"
+     />
+     ```
+   - ✅ **Implement lazy loading for all images**
+   - ✅ **Use responsive image sizes** with widths and sizes attributes
+   - ✅ **Optimize image quality** (40-75% for most images)
+
+2. **CSS Performance Optimization**
+   - ✅ **Eliminate render-blocking CSS** with media="print" onload technique:
+     ```html
+     <link rel="preload" href="/styles/non-critical.css" as="style"
+           onload="this.onload=null;this.rel='stylesheet'"
+           media="print" onload="this.media='all'">
+     <noscript><link rel="stylesheet" href="/styles/non-critical.css"></noscript>
+     ```
+
+3. **Font Loading Optimization**
+   - ✅ **Add preconnect hints** for external fonts:
+     ```html
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     ```
+   - ✅ **Use font-display: swap** for custom fonts
+   - ✅ **Implement system font fallbacks**
+
+4. **Critical Path Optimization**
+   - ✅ **Minimize render-blocking resources**
+   - ✅ **Inline critical CSS** for above-the-fold content
+   - ✅ **Preload critical resources**
+
+#### Process Flow
+
+1. **If scores meet criteria** → Proceed to Step 7 (Social Sharing Validation)
+2. **If scores don't meet criteria** → Optimize further before proceeding:
+   - Review and implement optimizations from checklist
+   - Re-run local performance tests
+   - Document performance improvements in commit messages
+   - Only proceed when performance targets are met
+
+#### Benefits
+
+- **Saves deployment time** by catching performance issues locally
+- **Allows rapid iteration** without waiting for live deployments
+- **Provides immediate feedback** on optimization effectiveness
+- **Prevents poor-performing code** from reaching production
+- **Enables performance-driven development** workflow
+
+#### Integration
+
+This step is **mandatory** between development and deployment. Performance thresholds must be met before proceeding to live deployment and social sharing validation. The agent should emphasize that this step prevents wasted time deploying poor-performing code and allows for rapid local optimization cycles.
+
+#### Common Performance Issues & Local Solutions
+
+**Large Images Causing Poor LCP**:
+```astro
+---
+// Solution: Optimize images with Astro Image
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-optimized.jpg';
+---
+
+<Image
+  src={heroImage}
+  alt="Hero description"
+  width={1200}
+  height={600}
+  format="webp"
+  quality={65}
+  loading="eager"
+  fetchpriority="high"
+/>
+```
+
+**Render-Blocking Resources**:
+```html
+<!-- Critical CSS inline -->
+<style>
+  /* Above-the-fold critical styles */
+  .hero { /* styles */ }
+</style>
+
+<!-- Non-critical CSS async -->
+<link rel="preload" href="/styles/non-critical.css" as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+```
+
+**Font Loading Issues**:
+```css
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom.woff2') format('woff2');
+  font-display: swap; /* Prevents layout shift */
+}
+```
+
+#### Deliverables:
+- Local performance testing report with scores
+- Performance optimization implementation checklist
+- Asset size verification report
+- Core Web Vitals validation results
+- Performance improvement documentation
+- Ready-to-deploy optimized build
 
 ---
 
@@ -1326,6 +1529,7 @@ Site: [URL]
 4. **Validation Focus**: Step 7 receives equal priority to all previous steps combined
 
 ### Success Metrics
+- **Local Performance Testing (Step 6.5)**: Mobile 75+, Desktop 85+ (before deployment)
 - **Performance**: Desktop 90+, Mobile 80+ (PageSpeed Insights via Performance Sub-Agent)
 - **Core Web Vitals**: All metrics in "Good" range (LCP <2.5s, FID <100ms, CLS <0.1)
 - **Schema Validation**: Zero critical errors on Google Rich Results Test
@@ -1351,18 +1555,26 @@ Site: [URL]
 
 ## Conclusion
 
-This Web Development Agent specification ensures systematic, high-quality website development with comprehensive performance testing and social sharing validation. The **Performance & Testing Validation Sub-Agent** ensures that performance optimization and schema validation are integral to the development process, not afterthoughts.
+This Web Development Agent specification ensures systematic, high-quality website development with local performance testing and comprehensive social sharing validation. The addition of **Step 6.5 (Local Performance Testing)** creates a critical quality gate that prevents poor-performing code from reaching production while enabling rapid optimization cycles.
 
 Key enforcement points:
-- **Performance Standards**: Desktop 90+, Mobile 80+ PageSpeed scores are mandatory
+- **Local Performance Testing (Step 6.5)**: Mobile 75+, Desktop 85+ required before deployment
+- **Performance Standards**: Desktop 90+, Mobile 80+ PageSpeed scores are mandatory for final validation
 - **Schema Validation**: Zero critical errors on Google Rich Results Test required
 - **Mobile-First Approach**: Significant performance improvement from baseline (67 to 80+) enforced
 - **Social Sharing**: Step 7 remains non-negotiable with perfect social media integration
 
-The Performance Sub-Agent operates at two critical checkpoints:
-1. **Step 5**: Initial optimization and baseline establishment
-2. **Step 7**: Final validation before launch (mandatory performance gate)
+The comprehensive approach includes three performance checkpoints:
+1. **Step 5**: Initial optimization and baseline establishment (Performance Sub-Agent)
+2. **Step 6.5**: Local performance testing before deployment (mandatory quality gate)
+3. **Step 7**: Final validation before launch (Performance Sub-Agent + social sharing)
 
-By following this structured approach with dedicated performance testing, every website will be built with speed, SEO, structured data, and social media integration as core requirements, ensuring optimal user experience and search engine visibility.
+**Step 6.5 Benefits**:
+- Prevents wasting time with poor-performing deployments
+- Allows rapid local optimization without waiting for live deployments
+- Provides immediate feedback on performance improvements
+- Ensures only optimized code reaches production
 
-**Remember: No website launches without meeting performance benchmarks and social sharing validation. Both are non-negotiable quality gates.**
+By following this structured approach with dedicated local and remote performance testing, every website will be built with speed, SEO, structured data, and social media integration as core requirements, ensuring optimal user experience and search engine visibility.
+
+**Remember: No website launches without meeting local performance benchmarks (Step 6.5), final performance validation, and social sharing validation. All are non-negotiable quality gates.**
