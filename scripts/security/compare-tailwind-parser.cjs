@@ -1,0 +1,10 @@
+const path=require('node:path'),fs=require('node:fs'),Module=require('node:module'),crypto=require('node:crypto');
+const root=path.resolve(process.argv[2]),mode=process.argv[3],out=path.resolve(process.argv[4]);const req=Module.createRequire(path.join(root,'package.json'));process.chdir(root);
+const calls=[];let originalLoad=Module._load;
+if(mode==='6') {
+ const baseline=path.resolve(process.argv[5]);const parser=require(baseline);const version=require(path.join(baseline,'package.json')).version;if(version!=='6.1.2')throw Error('Unverified baseline version');
+ Module._load=function(name,parent,...rest){if(name==='postcss-selector-parser'){calls.push({owner:parent.filename,version,path:baseline});return parser;}return originalLoad.call(this,name,parent,...rest);};
+} else {
+ Module._load=function(name,parent,...rest){if(name==='postcss-selector-parser'){const file=Module._resolveFilename(name,parent);const version=req('postcss-selector-parser/package.json').version;if(version!=='7.1.7')throw Error('Unexpected installed parser');calls.push({owner:parent.filename,version,path:file});}return originalLoad.call(this,name,parent,...rest);};
+}
+(async()=>{const postcss=req('postcss'),tailwind=req('tailwindcss'),autoprefixer=req('autoprefixer');const source=fs.readFileSync(path.join(root,'src/styles/global.css'),'utf8');const result=await postcss([tailwind({config:path.join(root,'tailwind.config.cjs')}),autoprefixer()]).process(source,{from:path.join(root,'src/styles/global.css'),map:false});if(!calls.some(c=>c.owner.includes('tailwindcss')))throw Error('Actual Tailwind parser usage not observed');fs.writeFileSync(out,result.css);fs.writeFileSync(out+'.json',JSON.stringify({mode,sha256:crypto.createHash('sha256').update(result.css).digest('hex'),bytes:Buffer.byteLength(result.css),parserOwners:calls,input:'Unchanged global.css, real Tailwind config and full application content; production mode, same Tailwind/PostCSS/Autoprefixer graph.'},null,2)+'\n');})().catch(e=>{console.error(e);process.exitCode=1;});
