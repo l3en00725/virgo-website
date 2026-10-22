@@ -43,3 +43,7 @@ On the folder run
 ---
 
 <p align="right"><a href="https://majestico.co" target="_blank">majestico.co</p>
+
+## Security migration runtime and package managers
+
+The primary install uses pinned Bun 1.4.3: `bun install --frozen-lockfile --ignore-scripts`. The maintained npm alternative uses `npm ci --ignore-scripts --no-audit --no-fund`. Both locked graphs were installed and built; all 66 rendered HTML files were byte-identical. Test with Node 24.22.1; patched supported branches are 22.23.4+, 24.22.1+ and 26.12.1+ within each major. See SECURITY-MIGRATION.md before release. `npm run test:seo` checks the maintained SEO compatibility copy.

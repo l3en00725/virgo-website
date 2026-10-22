@@ -1,4 +1,4 @@
-import { getCollection } from "astro:content";
+import { getCollection } from "@/lib/content";
 import rss from "@astrojs/rss";
 
 export async function GET(context: any) {
